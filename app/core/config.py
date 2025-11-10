@@ -1,6 +1,5 @@
-
-
 from pydantic_settings import BaseSettings
+
 
 class Settings(BaseSettings):
     DATABASE_URL: str
@@ -16,5 +15,6 @@ class Settings(BaseSettings):
         "env_file_encoding": "utf-8",
     }
 
-settings = Settings()
 
+settings = Settings()
+print("Loaded DB URL:", settings.DATABASE_URL)
