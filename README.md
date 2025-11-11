@@ -20,12 +20,12 @@ cd Mail_Microservice
 pip install -r requirements.txt
 uvicorn app.main:app --reload
 
-SECRET_KEY=your_secret_key
-ALGORITHM=HS256
-SMTP_SERVER=smtp.gmail.com
-SMTP_PORT=587
-SENDER_EMAIL=youremail@gmail.com
-SENDER_PASSWORD=your_app_password
+DATABASE_URL=your_database_connection_url
+JWT_SECRET_KEY=your_jwt_secret_key
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+SMTP_EMAIL=youremail@gmail.com
+SMTP_PASS=your_app_password
 > Use a **Google App Password**, not your regular Gmail password.
 
 
