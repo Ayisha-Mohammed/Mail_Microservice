@@ -14,6 +14,8 @@ from fastapi.responses import JSONResponse
 from fastapi import Request
 from app.utils.logger import logger
 
+from fastapi.responses import HTMLResponse
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -47,11 +49,21 @@ def protected_route(current_user=Depends(get_current_user)):
     return {"email": current_user.email, "message": "You are authorized!"}
 
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def root():
-    return {"message": "Email Service API is running "}
-
-
+    return """
+    <html>
+        <head>
+            <title>Email Microservice</title>
+        </head>
+        <body style="font-family: Arial; background-color: #121212; color: #f1f1f1; text-align:center; padding-top: 10%;">
+            <h1>📧 Email Service API</h1>
+            <p>Status: <b>Running successfully on Render</b></p>
+            <p>You can explore and test all endpoints at:</p>
+            <p><a href="/docs" style="color:#00bfff; font-size:18px; text-decoration:none;">➡️ Open API Docs</a></p>
+        </body>
+    </html>
+    """
 # @app.get("/check-db")
 # def check_db_connection(db: Session = Depends(get_session)):
 #     try:
